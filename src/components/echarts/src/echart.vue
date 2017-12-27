@@ -5,7 +5,7 @@
 
 <script>
 	var echarts = require('echarts');
-
+	let instance = null;
 	export default {
 		name:'epEchart',
 		props:{
@@ -32,25 +32,25 @@
 		},
 		data(){
 			return {
-				echatInstance:null,
+				echartInstance:null,
 				ehcartId:new Date().getTime()
 			};
 		},
 		methods: {
 			refreshEchart(){
-				this.echatInstance = echarts.init(this.$el)
-				this.echatInstance.setOption(this.option);
+				instance = echarts.init(this.$el)
+				instance.setOption(this.option);
 				
 				//屏幕大小调整，自动缩放大小
+				let _this = this;
 				window.onresize = function() {
-		          chart.resize();
+		          instance.resize(); 
 		        }
 				
 				//是否有绑定事件
 				if(this.config.event){
-					let _this = this
 					Object.keys(this.config.event).forEach(function(value){
-						_this.echatInstance.on(value,_this.config.event[value])
+						instance.on(value,_this.config.event[value])
 					})
 				}
 			}

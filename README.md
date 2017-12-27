@@ -2,6 +2,8 @@
 
 > A Vue component for echarts
 
+[Live Demo](https://lishanming.github.io/vue-echart/)
+
 ## Build Setup
 
 ``` bash
